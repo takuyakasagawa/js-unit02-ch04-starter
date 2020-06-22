@@ -1,11 +1,18 @@
 class Character {
-  constructor() {
+  constructor(props) {
+    this.name = props.name;
+    this.hp = props.hp;
+    this.mp = props.mp;
+    this.offensePower = props.offensePower;
+    this.defencePower = props.defencePower;
   }
 
   showStatus() {
     /* 
       キャラクターの名前、HP、MPを表示する。
     */
+    const main = document.getElementById('main');
+    main.innerHTML = this.name,this.hp,this.mp;
   }
 
   attack(defender) {
