@@ -14,7 +14,7 @@ class Character {
       キャラクターの名前、HP、MPを表示する。
     */
     const main = document.getElementById('main');
-    main.innerHTML = `'キャラクター名:'${props.name}'HP:' ${props.hp}'MP:'${props.mp}`;
+    p.innerHTML = <p>`'キャラクター名:'${props.name}'HP:' ${props.hp}'MP:'${props.mp}`</p>;
   }
   attack(defender) {
     /*
