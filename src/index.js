@@ -1,3 +1,5 @@
+import { OutputQuoteStyle } from "terser";
+
 class Character {
   constructor(props) {
     this.name = props.name;
@@ -12,9 +14,8 @@ class Character {
       キャラクターの名前、HP、MPを表示する。
     */
     const main = document.getElementById('main');
-    main.innerHTML = this.name,this.hp,this.mp;
+    main.innerHTML = `'キャラクター名:'${props.name}'HP:' ${props.hp}'MP:'${props.mp}`;
   }
-
   attack(defender) {
     /*
       キャラクターが死んでいる場合は攻撃出来ないので、それを表示する。
