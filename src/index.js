@@ -14,9 +14,9 @@ class Character {
       キャラクターの名前、HP、MPを表示する。
     */
     const main = document.getElementById('main');
-    main.innerHTML = `<p>'キャラクター名:'${props.name}' HP:' ${props.hp}' MP:'${props.mp}</p>`;
-    let div = document.createElement('div');
-    document.body.appendChild(main);
+    const div = document.createElement('div');
+    div.innerHTML = `<p>'キャラクター名:'${this.name}' HP:' ${this.hp}' MP:'${this.mp}</p>`;
+    main.appendChild(div);
   }
   attack(defender) {
     /*
@@ -24,6 +24,13 @@ class Character {
       死んでいない場合は相手に与えたダメージを表示。
       相手が死んだ場合は相手に与えたダメージと死んだことを表示する。 
     */
+   if (this.hp == 0) {//キャラクター hp == 0
+    `${this.name}'が死んでいて攻撃出来ない。'`;
+    } else if (条件式2) {//キャラクター hp<0,相手 hp< 0
+    文;
+    } else {//キャラクター hp <0,相手 hp==0
+    文;
+    }
   }
 
   calcAttackDamage(defender) {
@@ -35,8 +42,8 @@ class Character {
 }
 
 class Sorcerer extends Character {
-  constructor() {
-    
+  constructor(props) {
+    super(props);
   }
 
   healSpell(target) {
