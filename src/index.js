@@ -24,12 +24,14 @@ class Character {
       死んでいない場合は相手に与えたダメージを表示。
       相手が死んだ場合は相手に与えたダメージと死んだことを表示する。 
     */
-   if (this.hp == 0) {//キャラクター hp == 0
-    `${this.name}'が死んでいて攻撃出来ない。'`;
-    } else if (条件式2) {//キャラクター hp<0,相手 hp< 0
-    文;
-    } else {//キャラクター hp <0,相手 hp==0
-    文;
+   if (this.hp < 0) {//キャラクターが死んでいる
+      const showAttack = document.createElement('div');
+      showAttack.innerHTML = `${this.name}'が死んでいて攻撃出来ない。'`;
+      main.appendChild(showAttack);
+    } else {//キャラクターが死んでいない
+      const showAttack = document.createElement('main');
+      showAttack.innerHTML = `${this.offensePower}'のダメージ'`;
+      main.appendChild(showAttack);
     }
   }
 
