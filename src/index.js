@@ -15,23 +15,29 @@ class Character {
     */
     const main = document.getElementById('main');
     const div = document.createElement('div');
-    div.innerHTML = `<p>'キャラクター名:'${this.name}' HP:' ${this.hp}' MP:'${this.mp}</p>`;
+    div.innerHTML = `<p>キャラクター名:${this.name} HP: ${this.hp} MP:${this.mp}</p>`;
     main.appendChild(div);
   }
+
   attack(defender) {
     /*
       キャラクターが死んでいる場合は攻撃出来ないので、それを表示する。
       死んでいない場合は相手に与えたダメージを表示。
       相手が死んだ場合は相手に与えたダメージと死んだことを表示する。 
     */
-   if (this.hp < 0) {//キャラクターが死んでいる
-      const showAttack = document.createElement('div');
-      showAttack.innerHTML = `${this.name}'が死んでいて攻撃出来ない。'`;
-      main.appendChild(showAttack);
-    } else {//キャラクターが死んでいない
-      const showAttack = document.createElement('main');
-      showAttack.innerHTML = `${this.offensePower}'のダメージ'`;
-      main.appendChild(showAttack);
+    const div = document.createElement('div');
+    const main = document.getElementById('main');
+
+    if (this.hp <= 0) {//キャラクターが死んでいる
+      div.innerHTML = `${this.name}が死んでいて攻撃出来ない。`;
+      main.appendChild(div);
+      return;
+    }
+
+    if (defender.hp <= 0) {
+      div.innerHTML = `${defender.name}が死んで攻撃出来ない。`;
+      main.appendChild(div);
+      return;
     }
   }
 
@@ -40,6 +46,15 @@ class Character {
       ダメージは単純に攻撃力から防御力を引いて計算する。
       ダメージが0未満の場合は、最低のダメージ1を与える。
     */
+
+   const damageHp = defender.hp;
+   const damage = this.offensePower - defender.defencePower;
+
+    if (damage <= 0) {
+      defender.hp = damageHp - 1;
+    } else {
+      defender.hp = damageHp - damage;
+    }
   }
 }
 
