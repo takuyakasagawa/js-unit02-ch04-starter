@@ -47,14 +47,13 @@ class Character {
       ダメージが0未満の場合は、最低のダメージ1を与える。
     */
 
-   const damageHp = defender.hp;
-   const damage = this.offensePower - defender.defencePower;
+    let damage = this.offensePower - defender.defencePower;
 
     if (damage <= 0) {
-      defender.hp = damageHp - 1;
-    } else {
+      damage = 1;
       defender.hp = damageHp - damage;
-    }
+      return;
+    } 
   }
 }
 
