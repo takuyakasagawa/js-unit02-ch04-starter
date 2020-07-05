@@ -51,7 +51,7 @@ class Character {
 
     if (damage <= 0) {
       damage = 1;
-      defender.hp = damageHp - damage;
+      defender.hp = defender.hp - damage;
       return;
     } 
   }
