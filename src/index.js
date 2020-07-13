@@ -27,6 +27,7 @@ class Character {
     */
     const div = document.createElement('div');
     const main = document.getElementById('main');
+    defender.hp = defender.hp - damage;
 
     if (this.hp <= 0) {//キャラクターが死んでいる
       div.innerHTML = `${this.name}が死んでいて攻撃出来ない。`;
@@ -50,10 +51,10 @@ class Character {
     let damage = this.offensePower - defender.defencePower;
 
     if (damage <= 0) {
+      //defender.hp = defender.hp - damage;
       damage = 1;
-      defender.hp = defender.hp - damage;
-      return;
-    } 
+    } else {
+    }
   }
 }
 
