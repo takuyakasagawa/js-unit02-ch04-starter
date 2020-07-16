@@ -53,7 +53,6 @@ class Character {
     if (damage <= 0) {
       //defender.hp = defender.hp - damage;
       damage = 1;
-    } else {
       return damage;
     }
   }
