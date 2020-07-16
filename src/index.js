@@ -54,7 +54,7 @@ class Character {
       //defender.hp = defender.hp - damage;
       damage = 1;
     } else {
-      damage = this.offensePower - defender.defencePower;
+      return damage;
     }
   }
 }
