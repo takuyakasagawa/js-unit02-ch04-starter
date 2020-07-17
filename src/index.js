@@ -27,7 +27,6 @@ class Character {
     */
     const div = document.createElement('div');
     const main = document.getElementById('main');
-    defender.hp = defender.hp - damage;
 
     if (this.hp <= 0) {//キャラクターが死んでいる
       div.innerHTML = `${this.name}が死んでいて攻撃出来ない。`;
@@ -39,6 +38,19 @@ class Character {
       div.innerHTML = `${defender.name}が死んで攻撃出来ない。`;
       main.appendChild(div);
       return;
+    }
+
+    const damage = this.calcAttackDamage(defender);
+    defender.hp = defender.hp - damage;
+
+    if (defender.hp <= 0) {
+      //自分のキャラクターが敵に○○ダメージを与えたので敵が死んだ。
+      div.innerHTML = `${this.name}が${defender.name}に${damage}ダメージ を与えたので${defender.name}が死んだ。`;
+      main.appendChild(div);
+    } else {
+      //自分のキャラクターが敵に○○ダメージを与えた。敵のHPは残り○○。
+      div.innerHTML = `${this.name}が${defender.name}に${damage}ダメージを与えた。${defender.name}のHPは${defender.hp}。`
+      main.appendChild(div);
     }
   }
 
@@ -53,8 +65,8 @@ class Character {
     if (damage <= 0) {
       //defender.hp = defender.hp - damage;
       damage = 1;
-      return damage;
     }
+    return damage;
   }
 }
 
