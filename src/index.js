@@ -83,6 +83,41 @@ class Sorcerer extends Character {
       相手が死んでいる場合は回復が出来ないためその旨を表示する。
       MPが足りない場合はその旨を表示する。
     */
+   const div = document.createElement('div');
+   const main = document.getElementById('main');
+
+
+    //魔法使いが死んでいる場合その旨を表示する。
+   if (this.hp <= 0) {
+      div.innerHTML = `${this.name}が死んでいるため、回復できない。`;
+      main.appendChild(main);
+      return;
+   }
+
+   //相手が死んでいる場合は回復が出来ないためその旨を表示する。
+    if (defender.hp <= 0) {
+      div.innerHTML = `${defender.name}が死んでいるため、回復できない。`;
+      main.appendChild(main);
+      return;
+   } 
+
+   if (this.mp <= 0) {
+      //MPが足りない場合はその旨を表示する。
+      div.innerHTML = `${this.name}がMPが足りないため回復できない。`;
+      main.appendChild(main);
+    } else {
+      // 回復魔法は3のMPを消費する。相手のHPを15回復する。
+      div.innerHTML = `${this.name}が回復魔法を使った。${defender.name}のHPは15回復して${defender.hp}。`;
+      main.appendChild(main);
+    }
+
+    defender.hp = defender.hp + this.heal;
+
+    //MP3を消費して、相手のHPを15回復する計算。
+    heal () {
+      const mp =  3;
+      const heal = 15;
+    }
   }
 
   fireSpell(target) {
