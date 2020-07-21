@@ -87,6 +87,10 @@ class Sorcerer extends Character {
    const main = document.getElementById('main');
 
 
+   //相手が死んでいる場合は回復が出来ないためその旨を表示する。
+   // 引数がこちらはtargetに変わっていることに着目しましょう
+   // defenderは引数として宣言されていませんのでここでは使用できません
+
     //魔法使いが死んでいる場合その旨を表示する。
    if (this.hp <= 0) {
       div.innerHTML = `${this.name}が死んでいるため、回復できない。`;
@@ -95,28 +99,34 @@ class Sorcerer extends Character {
    }
 
    //相手が死んでいる場合は回復が出来ないためその旨を表示する。
-    if (defender.hp <= 0) {
-      div.innerHTML = `${defender.name}が死んでいるため、回復できない。`;
+    if (target.hp <= 0) {
+      div.innerHTML = `${target.name}が死んでいるため、回復できない。`;
       main.appendChild(main);
       return;
    } 
 
-   if (this.mp <= 0) {
+   if (this.mp <= 2) {
       //MPが足りない場合はその旨を表示する。
       div.innerHTML = `${this.name}がMPが足りないため回復できない。`;
       main.appendChild(main);
     } else {
       // 回復魔法は3のMPを消費する。相手のHPを15回復する。
-      div.innerHTML = `${this.name}が回復魔法を使った。${defender.name}のHPは15回復して${defender.hp}。`;
+      div.innerHTML = `${this.name}が回復魔法を使った。${target.name}のHPは15回復して${target.hp}になった。`;
       main.appendChild(main);
     }
+  }
 
-    defender.hp = defender.hp + this.heal;
+  // 計算が伴う実装の場合、まず計算を先にどう行うのかを考えてから、コードに移ると良いです
+  // 「魔法使いの3MPを消費する」は、簡単な算数の式にするとどうなるかを考てコメントアウトで書きましょう
+  // 「相手のHPを回復させる」も同様に簡単な数式で書いてみましょう。
+  // 例: 魔法使いのMP - 3 = 残りの魔法使いのMP など
 
-    //MP3を消費して、相手のHPを15回復する計算。
-    heal () {
-      const mp =  3;
-      const heal = 15;
+  heal(target){//相手のHPを回復する
+    if (this.mp >= 3) {//魔法使いのMPが3以上ある場合
+      //残りの魔法使いMP = 魔法使いのMP - 3
+      this.mp = this.mp - 3;
+      //相手のHP = 相手のHP + 15
+      target.hp = target.hp + 15;
     }
   }
 
